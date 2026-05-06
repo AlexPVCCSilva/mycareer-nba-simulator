@@ -1,0 +1,45 @@
+<div class="draft-wrapper">
+  <div class="draft-header">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/105px-National_Basketball_Association_logo.svg.png" alt="NBA Logo" class="nba-logo">
+    <h2>NBA Draft</h2>
+    <p>A noite que muda vidas</p>
+  </div>
+
+<div class="draft-actions" *ngIf="!draftTerminado">
+    <button class="skip-btn" (click)="pularAnimacao()">Pular Animação ⏭️</button>
+  </div>
+
+  <div class="picks-container">
+    <div *ngFor="let pick of displayedPicks" 
+         class="pick-card" 
+         [class.user-pick]="pick.isUser"
+         [style.borderColor]="pick.team.color">
+      
+      <div class="pick-number" [style.backgroundColor]="pick.team.bg">#{{ pick.pick }}</div>
+      
+      <div class="team-info">
+        <img [src]="pick.team.logoUrl" [alt]="pick.team.name" class="real-team-logo">
+        <span class="team-name" [style.color]="pick.team.color">{{ pick.team.name }} select:</span>
+      </div>
+
+      <div class="player-drafted">
+        <span class="drafted-name">{{ pick.playerInfo.name }}</span>
+        
+        <div class="jersey-container" *ngIf="pick.isUser">
+          <div class="jersey-model" [style.backgroundColor]="pick.team.color">
+            <span class="jersey-text" [style.color]="'#fff'" [style.textShadow]="'0 0 5px ' + pick.team.bg">
+              {{ pick.playerInfo.jerseyNumber || '00' }}
+            </span>
+          </div>
+        </div>
+
+        <span class="drafted-ovr" *ngIf="!pick.isUser">({{ pick.playerInfo.ovr }} OVR)</span>
+      </div>
+
+    </div>
+  </div>
+  <div class="draft-footer" *ngIf="draftTerminado">
+    <h3>O Draft do 1º Round Terminou!</h3>
+    <button class="goto-nba-btn" (click)="irParaNbaHub()">Assinar Contrato na NBA</button>
+  </div>
+</div>

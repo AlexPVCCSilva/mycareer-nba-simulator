@@ -1,0 +1,571 @@
+/* A base puxa as cores injetadas pelo HTML */
+.nba-wrapper {
+  background: radial-gradient(circle at top, var(--nba-accent) -100%, var(--nba-bg) 50%, #000000 100%);
+  color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nba-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--nba-accent);
+  padding-bottom: 1rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.franchise-logo {
+  height: 100px;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+}
+
+.franchise-titles h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.franchise-titles p {
+  margin: 5px 0 0 0;
+  color: #ccc;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nba-content {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ARMÁRIO */
+.locker-dashboard, .roty-dashboard {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.locker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.locker-header h3 { margin: 0; text-transform: uppercase; }
+
+.pos-badge {
+  background: var(--nba-accent);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 900;
+}
+
+.locker-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* O Molde da Camisa */
+.jersey-model {
+  width: 80px;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  clip-path: polygon(20% 0%, 35% 0%, 35% 15%, 65% 15%, 65% 0%, 80% 0%, 100% 25%, 90% 35%, 90% 100%, 10% 100%, 10% 35%, 0% 25%);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.6);
+}
+
+.jersey-text {
+  font-family: 'Impact', sans-serif;
+  font-size: 2.5rem;
+  margin-top: 15px;
+}
+
+.locker-stats h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+}
+
+.ovr-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: #111;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid var(--nba-accent);
+}
+
+.ovr-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* CORRIDA ROTY */
+.roty-dashboard h4 {
+  margin: 0 0 15px 0;
+  color: #FFD700;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,215,0,0.3);
+  padding-bottom: 5px;
+}
+
+.roty-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.roty-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.roty-item.is-me {
+  border: 1px solid var(--nba-accent);
+  background: rgba(255,255,255,0.1);
+}
+
+.roty-rank { font-weight: 900; color: #888; width: 30px; }
+.roty-item.is-me .roty-rank { color: #fff; }
+
+.roty-info { flex: 1; display: flex; flex-direction: column; }
+.roty-name { font-weight: bold; }
+.roty-team { font-size: 0.8rem; font-weight: 900; }
+.roty-ovr { font-weight: 900; background: #000; padding: 4px 8px; border-radius: 4px; }
+
+/* AÇÕES */
+.nba-actions { margin-top: 1rem; }
+
+.btn-play-nba {
+  width: 100%;
+  background: var(--nba-accent);
+  color: #fff;
+  border: none;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+.btn-play-nba:hover {
+  transform: scale(1.02);
+  filter: brightness(1.2);
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* --- HISTÓRICO NBA --- */
+.history-dashboard {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.history-dashboard h4 {
+  margin: 0 0 15px 0;
+  color: var(--nba-accent);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 5px;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+.history-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid var(--nba-accent);
+}
+
+.hist-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px; }
+.hist-year { color: #fff; font-weight: bold; font-size: 0.9rem; }
+.hist-result { font-weight: 900; font-size: 0.9rem; text-transform: uppercase; }
+
+.hist-stats { display: flex; justify-content: space-between; font-size: 0.75rem; color: #bbb; font-family: monospace; }
+.hist-stats span { background: rgba(0,0,0,0.4); padding: 4px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05); }
+
+.no-history { color: #666; font-style: italic; font-size: 0.9rem; text-align: center; margin: auto 0; }
+
+/* MODAIS REAPROVEITADOS */
+.roulette-overlay, .clutch-overlay, .summary-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+  display: flex; justify-content: center; align-items: center; z-index: 2000;
+}
+
+.roulette-modal, .clutch-modal, .summary-modal {
+  background: #111; padding: 2rem; border-radius: 15px; text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); width: 90%; max-width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wheel-container { position: relative; width: 250px; height: 250px; margin: 20px auto; }
+.wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: white; z-index: 10; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+.wheel { width: 100%; height: 100%; border-radius: 50%; border: 5px solid #fff; box-shadow: 0 0 20px rgba(0,0,0,0.5); transition: transform 4s cubic-bezier(0.175, 0.885, 0.32, 1); }
+
+.spin-wheel-btn, .continue-year-btn, .shoot-btn, .finish-year-btn {
+  background: var(--nba-accent); color: white; border: none; padding: 1rem 2rem;
+  font-size: 1.2rem; font-weight: bold; cursor: pointer; border-radius: 8px;
+  text-transform: uppercase; width: 100%; margin-top: 15px; transition: 0.2s;
+}
+.spin-wheel-btn:disabled { background: #555; }
+
+/* CLUTCH */
+.clutch-title { animation: pulse-danger 1s infinite alternate; }
+@keyframes pulse-danger { from { transform: scale(0.95); } to { transform: scale(1.05); } }
+.meter-container { width: 100%; height: 40px; background: #333; border-radius: 20px; position: relative; margin: 30px 0; overflow: hidden; border: 3px solid #555; }
+.green-zone { position: absolute; height: 100%; background: #00ffcc; box-shadow: 0 0 15px #00ffcc; }
+.pointer { position: absolute; height: 120%; width: 6px; background: white; top: -10%; transform: translateX(-50%); box-shadow: 0 0 10px white; z-index: 10; }
+
+/* PLAYOFFS BRACKET */
+.bracket-container { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+.bracket-step { display: flex; align-items: center; gap: 15px; padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.05); opacity: 0.3; transition: all 0.5s ease; }
+.step-circle { width: 30px; height: 30px; background: #333; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; }
+.bracket-step.achieved { opacity: 1; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.3); }
+.bracket-step.achieved .step-circle { background: #fff; color: #111; }
+.bracket-step.final-result { transform: scale(1.05); background: rgba(255, 255, 255, 0.15); border: 2px solid; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
+.bracket-step.final-result .step-name { font-weight: 900; font-size: 1.2rem; }
+
+/* --- PAINEL FINANCEIRO --- */
+.finance-panel {
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.finance-item { display: flex; flex-direction: column; }
+.fin-label { font-size: 0.8rem; color: #888; text-transform: uppercase; margin-bottom: 3px; }
+.fin-value { font-size: 1.1rem; font-weight: 900; color: #fff; }
+
+.highlight-money { color: #00ffcc; text-shadow: 0 0 8px rgba(0, 255, 204, 0.3); }
+.highlight-fans { color: #1da1f2; text-shadow: 0 0 8px rgba(29, 161, 242, 0.4); }
+.text-muted { color: #aaa; }
+.danger-text { color: #ff4500; animation: pulse-danger 1s infinite alternate; }
+
+/* --- BARRAS ESTILO REIGNS --- */
+.reigns-panel {
+  display: flex; flex-direction: column; gap: 15px;
+  background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px;
+  margin-top: 15px; border: 1px solid rgba(255,255,255,0.05);
+}
+.reigns-bar-group { display: flex; flex-direction: column; gap: 5px; }
+.reigns-track { width: 100%; height: 12px; background: #333; border-radius: 6px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); }
+.reigns-fill { height: 100%; transition: width 0.5s ease, background-color 0.5s ease; }
+
+/* --- MODAL DA FREE AGENCY --- */
+.free-agency-modal { max-width: 800px; }
+.free-agency-modal h2 { color: #00ffcc; text-shadow: 0 0 10px rgba(0, 255, 204, 0.5); font-size: 2.5rem; }
+.offers-grid { display: flex; gap: 20px; margin-top: 20px; justify-content: center; }
+.offer-card { background: rgba(0,0,0,0.6); border: 2px solid; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; align-items: center; flex: 1; transition: transform 0.2s; }
+.offer-card:hover { transform: scale(1.05); }
+.offer-logo { height: 60px; margin-bottom: 10px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
+.offer-card h4 { margin: 0 0 5px 0; font-size: 1.2rem; text-transform: uppercase; }
+.offer-type { font-size: 0.8rem; background: #333; padding: 3px 8px; border-radius: 4px; color: #aaa; margin-bottom: 15px; }
+.offer-money { font-size: 1.4rem; font-weight: 900; color: #00ffcc; margin-bottom: 5px; }
+.offer-years { font-size: 0.9rem; color: #fff; margin-bottom: 20px; }
+.sign-btn { width: 100%; color: #fff; border: none; padding: 10px; font-weight: 900; border-radius: 6px; cursor: pointer; text-transform: uppercase; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+
+@media (max-width: 768px) { .offers-grid { flex-direction: column; } }
+
+/* --- GALERIA DE TROFÉUS --- */
+.history-and-trophies { display: flex; flex-direction: column; gap: 20px; }
+.trophy-room { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px; padding: 1.5rem; box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.05); }
+.trophy-room h4 { margin: 0 0 15px 0; color: #FFD700; text-transform: uppercase; border-bottom: 1px solid rgba(255,215,0,0.3); padding-bottom: 5px; }
+.trophy-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.trophy-badge { background: linear-gradient(135deg, #b8860b, #ffd700); color: #000; font-weight: 900; padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4); }
+
+/* --- MINIGAMES NOVOS --- */
+.interview-modal { border-color: #1da1f2 !important; }
+.reporter-text { font-style: italic; font-size: 1.2rem; color: #ccc; margin-bottom: 20px; }
+.interview-choices { display: flex; flex-direction: column; gap: 15px; }
+.choice-btn { padding: 15px; border: none; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer; transition: 0.2s; }
+.choice-btn.arrogant { background: #ff4500; color: white; }
+.choice-btn.arrogant:hover { background: #cc3700; transform: scale(1.05); }
+.choice-btn.humble { background: #4682b4; color: white; }
+.choice-btn.humble:hover { background: #315f86; transform: scale(1.05); }
+
+.spam-modal { border-color: #ff8c00 !important; }
+.spam-counter { font-size: 4rem; color: #ff8c00; margin: 20px 0; }
+.spam-btn { background: #ff8c00; color: #111; border: none; padding: 20px; font-size: 1.5rem; font-weight: 900; border-radius: 12px; cursor: pointer; width: 100%; box-shadow: 0 5px 0 #cc7000; }
+.spam-btn:active { transform: translateY(5px); box-shadow: 0 0 0 #cc7000; }
+
+/* --- NARRATIVA DAS FINAIS --- */
+.narrative-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 3000; display: flex; justify-content: center; align-items: center; }
+.narrative-modal { text-align: center; max-width: 600px; padding: 2rem; }
+.narrative-line { font-size: 2rem; color: #fff; font-weight: 900; text-transform: uppercase; margin: 15px 0; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+.fade-in-text { animation: fadeIn 1s ease-in forwards; opacity: 0; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- HALL DA FAMA (APOSENTADORIA) --- */
+.retirement-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 5000; }
+.retirement-modal { background: linear-gradient(180deg, #1a1a1a, #000); border: 4px solid #FFD700; border-radius: 20px; padding: 3rem; text-align: center; max-width: 800px; width: 90%; box-shadow: 0 0 50px rgba(255, 215, 0, 0.3); }
+.hof-title { color: #FFD700; font-size: 3.5rem; margin: 0 0 10px 0; text-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+.hof-content { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; text-align: left; }
+.hof-content h3 { color: #fff; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+/* --- PLAYOFFS LIVE (A PRANCHETA) --- */
+.live-game-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(5px); display: flex; justify-content: center; align-items: center; z-index: 2500; }
+.live-game-modal { background: #111; border: 2px solid #333; border-radius: 15px; width: 90%; max-width: 800px; padding: 20px; }
+.matchup-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #222; padding-bottom: 20px; margin-bottom: 20px; }
+.team-side { display: flex; align-items: center; gap: 20px; }
+.team-side h1 { font-size: 4rem; margin: 0; font-family: 'Impact', sans-serif; }
+.live-logo { height: 80px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2)); }
+.match-info { text-align: center; }
+.round-text { color: #aaa; text-transform: uppercase; font-weight: bold; margin-bottom: 5px; }
+.clock-box { background: #ff0000; color: white; padding: 10px 20px; border-radius: 8px; font-weight: 900; font-size: 1.5rem; letter-spacing: 2px; }
+
+/* O BLOCO QUE TAVA FALTANDO! A QUADRA DE MADEIRA! */
+/* --- A QUADRA DE MADEIRA REAL --- */
+.court-map {
+  /* Efeito de tacos de madeira intercalados */
+  background: repeating-linear-gradient(
+    90deg,
+    #d9a05b,
+    #d9a05b 20px,
+    #c88b47 20px,
+    #c88b47 40px
+  );
+  border: 4px solid #fff;
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  height: 380px;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.6);
+  margin-bottom: 15px;
+}
+
+/* O Garrafão Pintado */
+.court-map::before, .court-map::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15%;
+  height: 45%;
+  background: rgba(var(--nba-accent-rgb, 0,0,0), 0.3); /* Puxa a cor do time se tiver, ou escurece */
+  border: 2px solid #fff;
+}
+.court-map::before { left: 0; border-left: none; }
+.court-map::after { right: 0; border-right: none; }
+
+.center-logo {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 140px; height: 140px; opacity: 0.25; pointer-events: none; filter: grayscale(50%);
+}
+
+.center-line { position: absolute; left: 50%; top: 0; width: 2px; height: 100%; background: #fff; transform: translateX(-50%); }
+.center-circle { position: absolute; left: 50%; top: 50%; width: 60px; height: 60px; border: 2px solid #fff; border-radius: 50%; transform: translate(-50%, -50%); }
+
+.hoop-paint { position: absolute; top: 50%; height: 100px; width: 40px; border: 2px solid #fff; background: rgba(255, 255, 255, 0.1); transform: translateY(-50%); }
+.hoop-paint.left { left: 0; border-left: none; }
+.hoop-paint.right { right: 0; border-right: none; }
+
+/* --- JOGADORES --- */
+.dot {
+  position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff;
+  transition: left 0.6s linear, top 0.6s linear; z-index: 5; transform: translate(-50%, -50%);
+}
+.my-player-dot, .star-dot { width: 18px; height: 18px; box-shadow: 0 0 10px #fff; z-index: 10; }
+
+/* --- A BOLA --- */
+.basketball {
+  position: absolute; width: 12px; height: 12px; background: #ff6600; border-radius: 50%; border: 1px solid #222;
+  box-shadow: inset -2px -2px 3px rgba(0,0,0,0.6);
+  transition: left 0.6s linear, top 0.6s linear; z-index: 20; transform: translate(-50%, -50%); 
+}
+.basketball::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: rgba(0,0,0,0.4); }
+.basketball::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0,0,0,0.4); }
+
+/* --- LOGS (O GALVÃO BUENO VIRTUAL) --- */
+.game-logs {
+  background: #0a0a0a; padding: 10px 15px; border-radius: 8px; margin-top: 15px;
+  font-family: 'Courier New', Courier, monospace; height: 120px; overflow: hidden;
+  border-left: 4px solid #ff4500; box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+}
+.log-line { color: #00ffcc; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; animation: slideInLog 0.3s ease-out forwards; }
+.log-line:first-child { color: #fff; font-size: 1rem; }
+
+/* --- LOGO CENTRAL GIGANTE --- */
+.center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 170px;
+  height: 170px;
+  opacity: 0.15; /* Fraquinho pra não esconder a bola */
+  pointer-events: none; /* A bola e os cliques passam direto sem bugar */
+  filter: grayscale(100%) brightness(150%); /* Efeito de pintura gasta no piso */
+  z-index: 1; /* Fica no chão, debaixo do tênis dos caras */
+}
+
+/* --- AS CESTAS (TABELA E ARO) --- */
+.hoop-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+.hoop-container.left { left: 0; }
+.hoop-container.right { right: 0; flex-direction: row-reverse; }
+
+/* A Tabela Branca */
+.backboard {
+  width: 4px;
+  height: 70px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+}
+
+/* O Aro Laranja e a Rede */
+.rim {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #ff4500; /* Laranjão do aro */
+  border-radius: 50%;
+  background: rgba(255, 69, 0, 0.2); /* A rede translúcida */
+}
+
+/* Cola o aro na tabela dependendo do lado */
+.hoop-container.left .rim { margin-left: -2px; }
+.hoop-container.right .rim { margin-right: -2px; }
+
+/* --- COMPANHEIROS DE EQUIPE --- */
+.teammate-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 3px solid #ccc;
+}
+.tm-info strong { font-size: 1.1rem; color: #fff; display: block; }
+.tm-pos { font-size: 0.8rem; color: #888; font-weight: 900; }
+.tm-synergy { font-weight: 900; text-shadow: 0 0 5px rgba(0,0,0,0.8); }
+
+/* --- ANIMAÇÃO FLUTUANTE DA CARTA --- */
+@keyframes floatCard {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.reigns-card {
+  animation: floatCard 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito quando passa o mouse por cima da carta */
+.reigns-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 50px rgba(0,0,0,1);
+}
+
+
+/* --- SCROLLBAR CUSTOMIZADA (PRA QUEM JOGA NO PC) --- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--nba-accent);
+  border-radius: 4px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+/* --- GLOW NOS BOTÕES DE DECISÃO --- */
+.event-choices button {
+  position: relative;
+  overflow: hidden;
+}
+
+.event-choices button:hover {
+  filter: brightness(1.2);
+}
+
+/* Efeito de flash de luz quando passa o mouse */
+.event-choices button::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+  transform: skewX(-25deg);
+  transition: 0.5s;
+}
+
+.event-choices button:hover::after {
+  left: 150%;
+}

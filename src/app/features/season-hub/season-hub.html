@@ -1,0 +1,127 @@
+<div class="hub-wrapper">
+  <header class="hub-header">
+    <div class="college-branding">
+      <h2>{{ careerState.player?.college?.name }}</h2>
+      <p class="year-badge">{{ careerState.getYearName() }}</p>
+    </div>
+  </header>
+
+  <main class="hub-content">
+    
+    <div class="dashboard-grid">
+      
+      <div class="player-dashboard">
+        <div class="ovr-circle">
+          <span>{{ careerState.player?.ovr }}</span>
+          <small>OVR</small>
+        </div>
+        <div class="player-details">
+          <h3><span class="pos-badge">{{ careerState.player?.position }}</span> {{ careerState.player?.name }}</h3>
+          <p>Projeção Atual: <strong class="stock-highlight">{{ careerState.getDraftStock() }}</strong></p>
+        </div>
+      </div>
+
+      <div class="history-dashboard">
+        <h4>Histórico NCAA</h4>
+        <div class="history-list" *ngIf="careerState.player?.historico?.length; else semHistorico">
+          
+          <div class="history-item" *ngFor="let hist of careerState.player.historico">
+            <div class="hist-header">
+              <span class="hist-year">Ano {{ hist.ano }} | {{ hist.evento }}</span>
+              <span class="hist-result">{{ hist.resultado }}</span>
+            </div>
+            
+            <div class="hist-stats">
+              <span>PTS: {{ hist.stats.pts }}</span>
+              <span>REB: {{ hist.stats.reb }}</span>
+              <span>AST: {{ hist.stats.ast }}</span>
+              <span>BLK: {{ hist.stats.blk }}</span>
+              <span>FG: {{ hist.stats.fg }}</span>
+            </div>
+          </div>
+
+        </div>
+        <ng-template #semHistorico>
+          <p class="no-history">Temporada de calouro. Mostre serviço em quadra e chegue ao March Madness!</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="action-panel">
+      <h3>Ações da Temporada</h3>
+      
+      <button 
+        class="action-btn btn-simulate" 
+        *ngIf="careerState.currentYear <= 4"
+        (click)="abrirRoleta()">
+        Simular Temporada
+        <small>Rode a roleta e descubra seu destino neste ano</small>
+      </button>
+
+      <button class="action-btn btn-draft" (click)="declararDraft()">
+        Declarar para o Draft
+        <small>Ir para a NBA com seu nível atual</small>
+      </button>
+    </div>
+  </main>
+
+  <div class="roulette-overlay" *ngIf="mostrarRoleta">
+    <div class="roulette-modal">
+      <h2 *ngIf="!eventoSorteado">Gire a Roleta do Destino</h2>
+      <h2 *ngIf="eventoSorteado" [style.color]="eventoSorteado.color">
+        {{ eventoSorteado.nome }} ({{ eventoSorteado.ovr > 0 ? '+' : '' }}{{ eventoSorteado.ovr }} OVR)
+      </h2>
+
+      <div class="wheel-container">
+        <div class="wheel-pointer">▼</div>
+        <div class="wheel" [style.background]="getConicGradient()" [style.transform]="'rotate(' + roletaRotation + 'deg)'"></div>
+      </div>
+
+      <p class="event-msg" *ngIf="eventoSorteado">{{ eventoSorteado.msg }}</p>
+
+      <button class="spin-wheel-btn" *ngIf="!eventoSorteado" [disabled]="isSpinning" (click)="girarRoleta()">
+        {{ isSpinning ? 'GIRANDO...' : 'TENTAR A SORTE' }}
+      </button>
+
+      <button class="continue-year-btn" *ngIf="eventoSorteado" (click)="prepararFimDeTemporada()">
+        Ver Desempenho do Time &#10140;
+      </button>
+    </div>
+  </div>
+
+  <div class="clutch-overlay" *ngIf="mostrarMinigame">
+    <div class="clutch-modal">
+      <h2 class="clutch-title">MOMENTO CLUTCH! ⏰</h2>
+      <p>O jogo está empatado. 3 segundos no relógio. A bola está com você!</p>
+      
+      <div class="meter-container">
+        <div class="green-zone" 
+             [style.left.%]="greenZoneStart" 
+             [style.width.%]="greenZoneEnd - greenZoneStart">
+        </div>
+        <div class="pointer" [style.left.%]="ponteiroPos"></div>
+      </div>
+
+      <button class="shoot-btn" (click)="arremessarClutch()">ARREMESSAR!</button>
+    </div>
+  </div>
+
+  <div class="summary-overlay" *ngIf="mostrarResumo">
+    <div class="summary-modal">
+      <h2>Fim da Temporada!</h2>
+      <p>Veja até onde o seu time chegou no campeonato:</p>
+      
+      <div class="bracket-container">
+        <div class="bracket-step" 
+             *ngFor="let fase of fasesTorneio; let i = index"
+             [class.achieved]="i <= faseAlcancadaIndex"
+             [class.final-result]="i === faseAlcancadaIndex">
+          <div class="step-circle">{{ i + 1 }}</div>
+          <div class="step-name">{{ fase }}</div>
+        </div>
+      </div>
+
+      <button class="finish-year-btn" (click)="finalizarAno()">Finalizar Ano {{ careerState.currentYear }}</button>
+    </div>
+  </div>
+</div>

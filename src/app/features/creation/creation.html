@@ -1,0 +1,101 @@
+<div class="creation-wrapper">
+  
+  <div class="header-titles">
+    <h2>NCAA Draft Combine</h2>
+    <p>O início da sua lenda</p>
+  </div>
+
+<div class="form-panel" *ngIf="!roletaRolou">
+    
+    <div class="input-group">
+      <label for="playerName">Nome do Jogador</label>
+      <input type="text" id="playerName" [(ngModel)]="currentPlayer.name" placeholder="Digite seu nome..." autocomplete="off">
+    </div>
+
+    <div class="input-group">
+      <label for="playerPosition">Posição em Quadra</label>
+      <select id="playerPosition" [(ngModel)]="currentPlayer.position">
+        <option [ngValue]="undefined" disabled selected>Escolha sua posição...</option>
+        <option value="PG">Armador (PG)</option>
+        <option value="SG">Ala-Armador (SG)</option>
+        <option value="SF">Ala (SF)</option>
+        <option value="PF">Ala-Pivô (PF)</option>
+        <option value="C">Pivô (C)</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label for="playerJersey">Número da Camisa</label>
+      <input 
+        type="number" 
+        id="playerJersey" 
+        [(ngModel)]="currentPlayer.jerseyNumber" 
+        min="0" max="99" 
+        placeholder="Ex: 23"
+      >
+    </div>
+
+    <div class="input-group">
+      <label for="playerRegion">Região de Origem</label>
+      <select id="playerRegion" [(ngModel)]="currentPlayer.region">
+        <option [ngValue]="undefined" disabled selected>Escolha sua região...</option>
+        <option value="Brasil">Brasil</option>
+        <option value="Europa">Europa</option>
+        <option value="EUA">EUA</option>
+      </select>
+    </div>
+
+    <button class="spin-btn" (click)="startCareer()">
+      <span>Descobrir meu Destino</span>
+    </button>
+  </div>
+
+  <div class="card-scene" *ngIf="roletaRolou">
+    <div class="card" [class.is-flipped]="isFlipped">
+      
+      <div class="card-face card-back">
+        <div class="glow-effect" [ngClass]="getTierClass()"></div>
+        <h3>NCAA Prospect</h3>
+        <p>Clique para revelar</p>
+        <button class="reveal-btn" (click)="flipCard()">REVELAR</button>
+      </div>
+
+      <div class="card-face card-front" [ngClass]="getTierClass()">
+        
+        <div class="ovr-badge" [class.suspense-pulse]="!isRevealed">
+          {{ displayOvr }}
+        </div>
+        
+        <div class="player-info">
+          <h4><span class="pos-badge">{{ currentPlayer.position }}</span> {{ currentPlayer.name }}</h4>
+          
+          <div class="archetype-badge" [style.color]="currentPlayer.archetype?.cor">
+            {{ currentPlayer.archetype?.icone }} {{ currentPlayer.archetype?.nome }}
+          </div>
+          
+          <ng-container *ngIf="isRevealed; else loadingState">
+            <p class="college-name reveal-anim">Ofertas de Bolsa:</p>
+            
+            <div class="offers-container reveal-anim-delayed">
+              <div class="offer-box" (click)="escolherFaculdade(currentPlayer.collegeOffers[0])">
+                <h5>{{ currentPlayer.collegeOffers[0].name }}</h5>
+                <span class="tier-tag">{{ currentPlayer.collegeOffers[0].tier }}</span>
+              </div>
+              <div class="vs-divider">OU</div>
+              <div class="offer-box" (click)="escolherFaculdade(currentPlayer.collegeOffers[1])">
+                <h5>{{ currentPlayer.collegeOffers[1].name }}</h5>
+                <span class="tier-tag">{{ currentPlayer.collegeOffers[1].tier }}</span>
+              </div>
+            </div>
+          </ng-container>
+          
+          <ng-template #loadingState>
+            <p class="college-name glitch-text">Analisando Olheiros...</p>
+          </ng-template>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

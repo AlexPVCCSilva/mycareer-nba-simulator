@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #121212; /* Já define o fundo preto global pra não dar flash branco ao carregar */
+}
+
+/* Garante que o componente raiz do Angular ocupará a tela toda se necessário */
+app-root {
+  display: block;
+  min-height: 100vh;
+}

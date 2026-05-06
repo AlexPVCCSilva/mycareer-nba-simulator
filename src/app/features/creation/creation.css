@@ -1,0 +1,471 @@
+/* Variáveis globais para facilitar a troca de tema no futuro */
+:root {
+  --bg-color: #121212;
+  --panel-bg: #1e1e1e;
+  --input-bg: #2a2a2a;
+  --accent-color: #ff4500;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+  --border-radius: 12px;
+}
+
+.creation-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  transition: background-color 0.5s ease; /* Transição suave quando mudarmos o fundo depois */
+}
+
+/* Cabeçalho */
+.header-titles {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header-titles h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.header-titles p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+/* Painel de Formulário */
+.form-panel {
+  background-color: var(--panel-bg);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.input-group input, 
+.input-group select {
+  background-color: var(--input-bg);
+  color: var(--text-main);
+  border: 1px solid transparent;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+}
+
+/* Botões */
+.spin-btn, .reveal-btn {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+}
+
+.spin-btn:hover, .reveal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 69, 0, 0.5);
+  background: #ff571a;
+}
+
+/* --- O resto do CSS da CARTA continua IGUAL daqui pra baixo --- */
+
+.card-scene {
+  width: 300px;
+  height: 450px;
+  perspective: 1000px;
+  margin-top: 1rem;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.card-back {
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  border: 2px solid #555;
+}
+
+.card-back h3 { margin-bottom: 0; }
+.card-back p { color: #888; font-size: 0.9rem; }
+
+/* Cores por Tier */
+.tier-powerhouse {
+  background: linear-gradient(135deg, #FFD700, #DAA520);
+  color: #000;
+  border: 3px solid #FFF;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.tier-high {
+  background: linear-gradient(135deg, #C0C0C0, #808080);
+  color: #000;
+}
+
+.tier-mid {
+  background: linear-gradient(135deg, #cd7f32, #8b4513);
+  color: #FFF;
+}
+
+.tier-low {
+  background: linear-gradient(135deg, #444, #222);
+  color: #FFF;
+  border: 2px solid #555;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.card-front .ovr-badge {
+  font-size: 5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.card-front .player-info {
+  text-align: center;
+  width: 100%;
+}
+
+.card-front .player-info h4 {
+  font-size: 1.8rem;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+}
+
+.card-front .player-info .college-name {
+  font-size: 1rem;
+  margin: 0 0 15px 0;
+  opacity: 0.9;
+}
+
+.card-front .tags {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card-front .tags span {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: rgba(0,0,0,0.2);
+}
+
+.glow-effect {
+  position: absolute;
+  inset: -5px;
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+
+.input-group input, 
+.input-group select {
+  background-color: var(--input-bg);
+  color: #ffffff; /* Garante o texto branco ao digitar */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Bordinha bem suave para não parecer um buraco negro */
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Deixa o texto de fundo ("Digite seu nome...") legível */
+/* Input de texto normal */
+.input-group input {
+  background-color: var(--input-bg);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-group input::placeholder {
+  color: #aaaaaa; 
+}
+
+/* O Select do capeta com o Dark Mode forçado */
+.input-group select {
+  background-color: var(--input-bg);
+  color: #ffffff;
+  color-scheme: dark; /* A MÁGICA TÁ AQUI: Força a caixa nativa a ficar preta */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+  appearance: auto; /* Garante que a setinha do dropdown apareça */
+}
+
+/* Opcional: Tenta forçar as options de novo, mas o color-scheme costuma resolver sozinho */
+.input-group select option {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+}
+
+/* O Título Principal */
+.header-titles h2 {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #ffffff; /* Forçando o branco puro */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* O Subtítulo */
+.header-titles p {
+  color: #ffffff; /* Tirando o cinza e deixando branco */
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+/* Os Títulos em cima das caixas de digitar */
+.input-group label {
+  font-size: 0.9rem;
+  color: #ffffff; /* Garantindo o branco aqui também */
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Animação do número pulsando rápido durante a contagem */
+.suspense-pulse {
+  animation: fast-pulse 0.2s infinite alternate;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes fast-pulse {
+  from { transform: scale(0.95); opacity: 0.8; }
+  to { transform: scale(1.05); opacity: 1; }
+}
+
+/* O texto de suspense piscando */
+.glitch-text {
+  font-family: monospace;
+  font-size: 1rem !important;
+  color: #00ffcc !important;
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Animação da Faculdade e as Tags aparecendo */
+.reveal-anim {
+  animation: pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.reveal-anim-delayed {
+  opacity: 0;
+  animation: fade-up 0.5s ease-out 0.3s forwards; /* Começa um pouquinho depois */
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-up {
+  0% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Botão de Continuar para o Hub */
+.continue-btn {
+  margin-top: 1.5rem;
+  background: #00ffcc; /* Um ciano neon pra dar destaque de "sucesso" */
+  color: #121212;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 900;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(0, 255, 204, 0.4);
+}
+
+.continue-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.6);
+  background: #1affd1;
+}
+
+/* Container das ofertas */
+.offers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* O divisor "OU" */
+.vs-divider {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #888;
+  background: #111;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+/* Caixinha de cada faculdade (que agora é o botão) */
+.offer-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.offer-box h5 {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.offer-box:hover {
+  background: rgba(0, 255, 204, 0.2);
+  border-color: #00ffcc;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+}
+
+
+.pos-badge {
+  background: var(--accent-color, #ff4500);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  vertical-align: middle;
+  margin-right: 8px;
+  box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+  font-family: monospace;
+  font-weight: 900;
+}
+
+.archetype-badge {
+  font-size: 0.9rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px currentColor; /* Faz a cor dele brilhar */
+}

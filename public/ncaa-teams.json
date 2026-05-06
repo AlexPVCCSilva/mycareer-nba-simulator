@@ -1,0 +1,16 @@
+[
+  { "id": 1, "name": "Duke Blue Devils", "tier": "Powerhouse", "location": "North Carolina" },
+  { "id": 2, "name": "Kentucky Wildcats", "tier": "Powerhouse", "location": "Kentucky" },
+  { "id": 3, "name": "Kansas Jayhawks", "tier": "Powerhouse", "location": "Kansas" },
+  { "id": 4, "name": "North Carolina Tar Heels", "tier": "Powerhouse", "location": "North Carolina" },
+  { "id": 5, "name": "UCLA Bruins", "tier": "High", "location": "California" },
+  { "id": 6, "name": "Gonzaga Bulldogs", "tier": "High", "location": "Washington" },
+  { "id": 7, "name": "Villanova Wildcats", "tier": "High", "location": "Pennsylvania" },
+  { "id": 8, "name": "Michigan State Spartans", "tier": "High", "location": "Michigan" },
+  { "id": 9, "name": "Florida Gators", "tier": "Mid", "location": "Florida" },
+  { "id": 10, "name": "Texas Longhorns", "tier": "Mid", "location": "Texas" },
+  { "id": 11, "name": "Butler Bulldogs", "tier": "Mid", "location": "Indiana" },
+  { "id": 12, "name": "VCU Rams", "tier": "Low", "location": "Virginia" },
+  { "id": 13, "name": "Florida Gulf Coast Eagles", "tier": "Low", "location": "Florida" },
+  { "id": 14, "name": "UMBC Retrievers", "tier": "Low", "location": "Maryland" }
+]

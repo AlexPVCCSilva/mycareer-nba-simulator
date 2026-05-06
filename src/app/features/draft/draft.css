@@ -1,0 +1,187 @@
+.draft-wrapper {
+  background-color: #0b0f19; /* Azul bem escuro padrão NBA */
+  min-height: 100vh;
+  padding: 2rem 1rem 5rem 1rem;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.draft-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.nba-logo {
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.draft-header h2 {
+  font-size: 3rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.picks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Animação do card entrando na tela */
+.pick-card {
+  display: flex;
+  align-items: center;
+  background: #1a1f2e;
+  border-left: 5px solid; /* Cor do time vem pelo HTML */
+  border-radius: 8px;
+  padding: 10px 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Card do Usuário (Destaque Dourado) */
+.user-pick {
+  background: linear-gradient(90deg, #1a1f2e, #3a2e0a);
+  border: 2px solid #FFD700 !important;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  transform: scale(1.02);
+}
+
+.user-pick .drafted-name {
+  color: #FFD700;
+  font-weight: 900;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.pick-number {
+  font-size: 1.5rem;
+  font-weight: 900;
+  padding: 10px;
+  border-radius: 5px;
+  min-width: 40px;
+  text-align: center;
+  margin-right: 15px;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.team-logo {
+  font-size: 1.5rem;
+}
+
+.team-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.player-drafted {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.drafted-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.drafted-ovr {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.draft-footer {
+  margin-top: 3rem;
+  text-align: center;
+  animation: slideIn 0.5s ease;
+}
+
+.goto-nba-btn {
+  background: #00ffcc;
+  color: #0b0f19;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 10px;
+  box-shadow: 0 5px 20px rgba(0, 255, 204, 0.4);
+  transition: transform 0.2s;
+}
+
+.goto-nba-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Logo real do time */
+.real-team-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Container da Camisa */
+.jersey-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+/* O Molde da Camisa Regata (Clip-Path é vida!) */
+.jersey-model {
+  width: 60px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Isso aqui recorta os ombros e a gola pra parecer uma regata */
+  clip-path: polygon(
+    20% 0%, 35% 0%, 
+    35% 15%, 65% 15%, 
+    65% 0%, 80% 0%, 
+    100% 25%, 90% 35%, 
+    90% 100%, 10% 100%, 
+    10% 35%, 0% 25%
+  );
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5); /* Dá um voluminho de pano */
+}
+
+/* O número na camisa */
+.jersey-text {
+  font-family: 'Impact', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  margin-top: 10px; /* Desce um pouquinho pra sair da gola */
+}
+
+/* Ajusta o flex do player-drafted para caber a camisa */
+.player-drafted {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Garante que tudo alinhe na direita */
+}
